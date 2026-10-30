@@ -504,9 +504,14 @@ if not st.session_state.logged_in:
     st.title("🔒 ログイン画面")
     #password = st.text_input("認証コードを入力してください", type="password")
     password = st.text_input("認証コードを入力してください")
+
+    #あらかじめ決めたパスワード（例: "family2026" など）と照合
+    #correct_password = " "
+    #Streamlitの安全な保管場所からパスワードを読み込む
+    correct_password = st.secrets["app_password"]
+
     if st.button("ログイン"):
-        # あらかじめ決めたパスワード（例: "family2026" など）と照合
-        if password == "taxtest20261030":
+        if password == correct_password:
             st.session_state.logged_in = True
             st.rerun()
         else:
