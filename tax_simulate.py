@@ -506,7 +506,7 @@ if not st.session_state.logged_in:
     password = st.text_input("認証コードを入力してください")
     if st.button("ログイン"):
         # あらかじめ決めたパスワード（例: "family2026" など）と照合
-        if password == "SAKUMA":
+        if password == "taxtest20261030":
             st.session_state.logged_in = True
             st.rerun()
         else:
