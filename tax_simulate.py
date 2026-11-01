@@ -505,10 +505,14 @@ if not st.session_state.logged_in:
     #password = st.text_input("認証コードを入力してください", type="password")
     password = st.text_input("認証コードを入力してください")
 
-    #あらかじめ決めたパスワード（例: "family2026" など）と照合
+    #あらかじめ決めたパスワードとチェックする場合は次行のcorrect_passwordに記述
     #correct_password = " "
-    #Streamlitの安全な保管場所からパスワードを読み込む
-    correct_password = st.secrets["app_password"]
+    try:
+        #1.まずStreamlit cloudsのsecretsからパスワードを読み込む
+        correct_password = st.secrets["app_password"]
+    except EXception:
+        #2.失敗した場合はRenderなどの環境変数(os.environ)からパスワードを読み込む
+        correct_password = os.environ.get["app_password"]
 
     if st.button("ログイン"):
         if password == correct_password:
