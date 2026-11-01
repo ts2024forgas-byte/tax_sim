@@ -510,7 +510,7 @@ if not st.session_state.logged_in:
     try:
         #1.まずStreamlit cloudsのsecretsからパスワードを読み込む
         correct_password = st.secrets["app_password"]
-    except EXception:
+    except Exception:
         #2.失敗した場合はRenderなどの環境変数(os.environ)からパスワードを読み込む
         correct_password = os.environ.get["app_password"]
 
